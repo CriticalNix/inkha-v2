@@ -1,0 +1,1 @@
+$.fancybox('<p>By continuing to use this software you agree Nix is not responsible for your actions or losses!</p><p> On the otherhand if you win loads feel free to tip. =P</p>');
