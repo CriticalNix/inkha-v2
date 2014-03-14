@@ -72,38 +72,40 @@ function emoticons(text) { //emotes are checked and passed into a string before 
 		return rep ? '<img src="' + url + rep + '" class="emoticons" />' : match;
 	});
     
-    var name_usr = $('#nick').text();// finds username for highlighting 
-
-
-    text = text.replace(name_usr, "<font color='blue'><b>$&</b></font>").replace(/^\((.*?)\) &lt;@(.*?)&gt;/g, "\($1\) &lt;@<font color='orange'>$2</font>&gt;").replace(/^\((88818|88889|13)\) &lt;(.*?)&gt;/g, "\($1\) &lt;<font color='purple'>$2</font>&gt;"); // thanks Xeb for this color code
-
+    var name_usr = $('#nick').text();// finds username for highlighting
+    text = text.replace(name_usr, "<font color='blue'><b>$&</b></font>");
 	
 	return (text);
 	
 }
 
 socket.on("chat", function (txt) { //reads chat lines using socket then uses simple jquery to replace the line with one containing emotes.
-	var master = $('#uid').text();
-	var name_usr = $('#nick').text();
-	var reg_userid = /\(([^)]+)\)/;
-	var reg_usr = /\<([^)]+)\>/;
-	var userid = reg_userid.exec(txt)[1];
-	var id_usr = reg_usr.exec(txt)[1];
-	var cleanMsg = txt.split("> ")[1];
+	var ann_test = /[#][#][#]/;
+	var ann_check = ann_test.exec(txt)[0];
+    
+	if (ann_check) {}
+    
+	else {
 
+		var master = $('#uid').text();
+		var name_usr = $('#nick').text();
+		var reg_userid = /\(([^)]+)\)/;
+		var reg_usr = /\<([^)]+)\>/;
+		var userid = reg_userid.exec(txt)[1];
+		var id_usr = reg_usr.exec(txt)[1];
+		var cleanMsg = txt.split("> ")[1];
 
-	if (chat_on == 1) {	
-		//console.log(cleanMsg);
-        
-		chat_line = doog_regex(txt);
-		$("div#chat .chatline:last-child").html(gets_date() + ' ' + chat_line);
-   
-    }
-	
-	if (userid == master && id_usr == name_usr) {
-		if (cleanMsg == "!emote") {
-			chat_on = !chat_on;
+		if (chat_on == 1) {
+			//console.log(cleanMsg);
+			chat_line = doog_regex(txt);
+			$("div#chat .chatline:last-child").html(gets_date() + ' ' + chat_line);
 		}
 
-	}	
+		if (userid == master && id_usr == name_usr) {
+			if (cleanMsg == "!emote") {
+				chat_on = !chat_on;
+			}
+
+		}
+	}
 });

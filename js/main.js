@@ -34,7 +34,7 @@ var start_values_check = 0;
 var betid = 0;
 var last_betid = 0;
 var last_betid2 = 0;
-var version_c = "2.0.4";
+var version_c = "2.0.5";
 var heartbeat_bpm = 100; //this is the bots ticker if for some reason the site temp bans  for spam betting lower this to 125
 var bet_data = [];
 var arr_bets = [];
@@ -1064,7 +1064,7 @@ function gui() { //
     }
     
     //-------------------------------------- Graph Div
-    var $graphDiv = $('<fieldset id="chipper3" style="margin-left:70px;background-color:rgba(35,35,35,0.9);border:2px solid; border-color: #999999;width:700px;height:100px;margin-right:3px" class="graph-container"><div style="padding: 0;width:700px;height:100px;margin-right:0px" id="g_placeholder" class="graph-placeholder"></div>'); //graph holder
+    var $graphDiv = $('<fieldset id="chipper3" style="margin-left:70px;background-color:rgba(35,35,35,0.9);border:2px solid; border-color: #999999;width:700px;height:200px;margin-right:3px" class="graph-container"><div style="padding: 0;width:700px;height:200px;margin-right:0px" id="g_placeholder" class="graph-placeholder"></div>'); //graph holder
     
     var $legends = $('</br><div id="chartLegend" style="float:right;margin-right:10px;background-color:rgba(35,35,35,0.5);border:2px solid; border-color: #999999;" ></div>');
     
