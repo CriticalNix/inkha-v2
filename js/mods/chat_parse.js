@@ -1,16 +1,3 @@
-//Copyright (C) 2014  CriticalNix
-//
-//This program is free software; you can redistribute it and/or
-//modify it under the terms of the GNU General Public License
-//version 2.
-//
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-//
-//A full copy of the GNU General Public License, version 2 can be found here. http://www.gnu.org/licenses/gpl-2.0.html
-//-------------------------------------------------------------------
 var chat_on = 1;
 
 function gets_date() {
@@ -28,7 +15,7 @@ function doog_regex (txt) {
 
   //var name_usr = "the";
 
-txt = quote_html(txt).replace(/([^0-9a-z#])((?:betid|roll):? |#)([1-9][0-9]{4,8})\b/gi, '$1<a target="_blank" href="/roll/$3">$2$3</a>').replace(/localminers/gi, "<font color='green'>Localminers</font>").replace(/(https:\/\/doge-dice[.]com\/roll\/)([1-9][0-9]{0,8})/gi, ' <a target="_blank" href="/roll/$2">$2</a> ').replace(/(bitcoin-talk|bticointakl)/gi, "$1 (a phishing site, do not visit)").replace(/lnputs[.]io/gi, "Lnputs.io (a phishing site, do not visit)").replace(/dicen[o0]w/gi, "dice-now").replace(/letsdice/gi, "lets-dice").replace(/(http:\/\/just-dice[.]blogspot[.](?:ca|com)\/[0-9]+\/[0-9]+\/([a-z0-9-]+)[.]html)/gi, '[<a target="_blank" href="$1">$2</a>]').replace(/([?]|&amp;)(r|referer)=\s*(?:.+?\b)/gi, "$1$2= [spam link] ").replace(/(\/ref\/[0-9a-z\/]*)/gi, " [spam link]").replace(/(bit[.]ly|gg[.]gg|goo[.]gl|is[.]gd)\/[a-z0-9]{4,}/gi, "[suspicious link]").replace(/\bbitwars\b/gi, "[spam link]").replace(/\bmegaapp\b/gi, "[suspicious link]").replace(/([a-z0-9.-_]*buybtc[a-z0-9.-_]*@gmail[.])com/gi, "I am a scammer and will steal your coins!  $1cum to meet your sticky end!").replace(/([a-z0-9.-_]*buybtc[a-z0-9.-_]*@gmail[.])com/gi, "").replace(/([^a-z])[Ã¡Â´Â¦rÃÂ³]Ã¢Â *[aÃâÃÂ]Ã¢Â *[pÃâ¬]Ã¢Â *[eÃÂµÃâ¢]/gi, "$1tickle").replace(/([^a-z])[Ã¡Â´Â¦rÃÂ³]Ã¢Â *[aÃâÃÂ]Ã¢Â *[pÃâ¬]Ã¢Â *iÃ¢Â *([^d])/gi, "$1tickli$2").replace(/([^a-z])[Ã¡Â´Â¦rÃÂ³]Ã¢Â *[aÃâÃÂ]Ã¢Â *[eÃÂµÃâ¢]Ã¢Â *[pÃâ¬]/gi, "$1tickel").replace(/([^a-z])[Ã¡Â´Â¦rÃÂ³]Ã¢Â *[aÃâÃÂ]Ã¢Â *[eÃÂµÃâ¢]Ã¢Â *[pÃâ¬]Ã¢Â *i/gi, "$1tickeli").replace(/(&lt;.*&gt;.*?)\b(butthurt)\b/i, '$1<a target="_blank" href="https://doge-dice.com/form.jpg">$2</a>').replace(/(dogechain[.]info\/)(?:[a-w]{2}|zh-cn)\//g, "$1").replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?dogechain[.]info\/tx(?:-index)?\/)?([0-9a-f]{8})([0-9a-f]{56})\b/g, '$1[<a target="_blank" href="http://dogechain.info/tx/$2$3"><font color="green">$2</font></a>]').replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?blockchain[.]info\/address\/)?(1[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g, '$1[<a target="_blank" href="http://blockchain.info/address/$2$3">$2</a>]').replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?dogechain[.]info\/address\/)?(D[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g, '$1[<a target="_blank" href="http://dogechain.info/address/$2$3"><font color="red">such $2</font></a>]').replace(/\b(https?:\/\/i[.]imgur[.]com\/[0-9a-z]{5,7}[.](?:jpg|png|gif)(?:[?][0-9]+)?)\b/gi, '[<a target="_blank" href="$1">img</a>]').replace(/\b(https?:\/\/imgur[.]com\/(?:a|gallery)\/[0-9a-z]{5,7}\/?)(?:\b|$)/gi, '[<a target="_blank" href="$1">imgs</a>]').replace(/\b(https?:\/\/(?:(?:www[.])?youtube[.]com\/watch[?]v=|youtu[.]be\/)[0-9a-z_-]{11}[?]?(?:(?:&amp;)?(?:wide|(?:feature|list)=[a-z.0-9]*|t=[0-9msh]+))*)\b/gi, '[<a target="_blank" href="$1">video</a>]').replace(/\b(https?:\/\/(?:(?:www|r2)[.])?reddit[.]com\/r\/([a-z0-9]+)\/comments\/[a-z0-9]+\/([a-z0-9_]+)(?:\/[0-9a-z]+)?\/?)(\b| |$)/gi, '[<a target="_blank" href="$1">reddit:$2 $3</a>]$4').replace(/\b(https:\/\/bitcointalk[.]org\/(?:index[.]php)?[?]topic=[0-9]+(?:[.](?:new#new|(?:msg)?[0-9]+))?(?:;(?:all|topicseen))?(?:#new|#msg[0-9]+)?)\b/gi, '[<a target="_blank" href="$1">thread</a>]');
+txt = quote_html(txt).replace(/([^0-9a-z#])((?:betid|roll):? |#)([1-9][0-9]{4,8})\b/gi, '$1<a target="_blank" href="/roll/$3">$2$3</a>').replace(/localminers/gi, "<font color='green'>Localminers</font>").replace(/(https:\/\/doge-dice[.]com\/roll\/)([1-9][0-9]{0,8})/gi, ' <a target="_blank" href="/roll/$2">$2</a> ').replace(/(bitcoin-talk|bticointakl)/gi, "$1 (a phishing site, do not visit)").replace(/lnputs[.]io/gi, "Lnputs.io (a phishing site, do not visit)").replace(/dicen[o0]w/gi, "dice-now").replace(/letsdice/gi, "lets-dice").replace(/(http:\/\/just-dice[.]blogspot[.](?:ca|com)\/[0-9]+\/[0-9]+\/([a-z0-9-]+)[.]html)/gi, '[<a target="_blank" href="$1">$2</a>]').replace(/([?]|&amp;)(r|referer)=\s*(?:.+?\b)/gi, "$1$2= [spam link] ").replace(/(\/ref\/[0-9a-z\/]*)/gi, " [spam link]").replace(/(bit[.]ly|gg[.]gg|goo[.]gl|is[.]gd)\/[a-z0-9]{4,}/gi, "[suspicious link]").replace(/\bbitwars\b/gi, "[spam link]").replace(/\bmegaapp\b/gi, "[suspicious link]").replace(/([a-z0-9.-_]*buybtc[a-z0-9.-_]*@gmail[.])com/gi, "I am a scammer and will steal your coins!  $1cum to meet your sticky end!").replace(/([a-z0-9.-_]*buybtc[a-z0-9.-_]*@gmail[.])com/gi, "").replace(/([^a-z])[Ã¡Â´Â¦rÃÂ³]Ã¢Â *[aÃ?â??ÃÂ]Ã¢Â *[pÃ?â?¬]Ã¢Â *[eÃÂµÃ?â?¢]/gi, "$1tickle").replace(/([^a-z])[Ã¡Â´Â¦rÃÂ³]Ã¢Â *[aÃ?â??ÃÂ]Ã¢Â *[pÃ?â?¬]Ã¢Â *iÃ¢Â *([^d])/gi, "$1tickli$2").replace(/([^a-z])[Ã¡Â´Â¦rÃÂ³]Ã¢Â *[aÃ?â??ÃÂ]Ã¢Â *[eÃÂµÃ?â?¢]Ã¢Â *[pÃ?â?¬]/gi, "$1tickel").replace(/([^a-z])[Ã¡Â´Â¦rÃÂ³]Ã¢Â *[aÃ?â??ÃÂ]Ã¢Â *[eÃÂµÃ?â?¢]Ã¢Â *[pÃ?â?¬]Ã¢Â *i/gi, "$1tickeli").replace(/(&lt;.*&gt;.*?)\b(butthurt)\b/i, '$1<a target="_blank" href="https://doge-dice.com/form.jpg">$2</a>').replace(/(dogechain[.]info\/)(?:[a-w]{2}|zh-cn)\//g, "$1").replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?dogechain[.]info\/tx(?:-index)?\/)?([0-9a-f]{8})([0-9a-f]{56})\b/g, '$1[<a target="_blank" href="http://dogechain.info/tx/$2$3"><font color="green">$2</font></a>]').replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?blockchain[.]info\/address\/)?(1[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g, '$1[<a target="_blank" href="http://blockchain.info/address/$2$3">$2</a>]').replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?dogechain[.]info\/address\/)?(D[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g, '$1[<a target="_blank" href="http://dogechain.info/address/$2$3"><font color="red">such $2</font></a>]').replace(/\b(https?:\/\/i[.]imgur[.]com\/[0-9a-z]{5,7}[.](?:jpg|png|gif)(?:[?][0-9]+)?)\b/gi, '[<a target="_blank" href="$1">img</a>]').replace(/\b(https?:\/\/imgur[.]com\/(?:a|gallery)\/[0-9a-z]{5,7}\/?)(?:\b|$)/gi, '[<a target="_blank" href="$1">imgs</a>]').replace(/\b(https?:\/\/(?:(?:www[.])?youtube[.]com\/watch[?]v=|youtu[.]be\/)[0-9a-z_-]{11}[?]?(?:(?:&amp;)?(?:wide|(?:feature|list)=[a-z.0-9]*|t=[0-9msh]+))*)\b/gi, '[<a target="_blank" href="$1">video</a>]').replace(/\b(https?:\/\/(?:(?:www|r2)[.])?reddit[.]com\/r\/([a-z0-9]+)\/comments\/[a-z0-9]+\/([a-z0-9_]+)(?:\/[0-9a-z]+)?\/?)(\b| |$)/gi, '[<a target="_blank" href="$1">reddit:$2 $3</a>]$4').replace(/\b(https:\/\/bitcointalk[.]org\/(?:index[.]php)?[?]topic=[0-9]+(?:[.](?:new#new|(?:msg)?[0-9]+))?(?:;(?:all|topicseen))?(?:#new|#msg[0-9]+)?)\b/gi, '[<a target="_blank" href="$1">thread</a>]');
 
 	return emoticons(txt);
 }
@@ -72,33 +59,41 @@ function emoticons(text) { //emotes are checked and passed into a string before 
 		return rep ? '<img src="' + url + rep + '" class="emoticons" />' : match;
 	});
     
-    var name_usr = $('#nick').text();// finds username for highlighting
-    text = text.replace(name_usr, "<font color='blue'><b>$&</b></font>");
+    var name_usr = $('#nick').text();// finds username for highlighting 
+
+
+    text = text.replace(name_usr, "<font color='blue'><b>$&</b></font>").replace(/^\((.*?)\) &lt;@(.*?)&gt;/g, "\($1\) &lt;@<font color='orange'>$2</font>&gt;").replace(/^\((88818|88889|13)\) &lt;(.*?)&gt;/g, "\($1\) &lt;<font color='purple'>$2</font>&gt;");
+
 	
 	return (text);
 	
 }
 
 socket.on("chat", function (txt) { //reads chat lines using socket then uses simple jquery to replace the line with one containing emotes.
-	var ann_test = /[#][#][#]/;
-	var ann_check = ann_test.exec(txt)[0];
-    
-	if (ann_check) {}
-    
-	else {
 
-		var master = $('#uid').text();
+    var announcement = /(^|\s)###(\s|$)/;
+    var check_announcement = announcement.exec(txt);
+	
+	if (check_announcement) {
+    
+        $("div#chat .chatline:last-child").html(gets_date() + ' <font color="blue"><b>' + txt + '</b></font>');
+        
+	} else {
+
+        var master = $('#uid').text();
 		var name_usr = $('#nick').text();
-		var reg_userid = /\(([^)]+)\)/;
 		var reg_usr = /\<([^)]+)\>/;
-		var userid = reg_userid.exec(txt)[1];
+        var reg_userid = /\(([^)]+)\)/;
 		var id_usr = reg_usr.exec(txt)[1];
+        var userid = reg_userid.exec(txt)[1];
 		var cleanMsg = txt.split("> ")[1];
 
 		if (chat_on == 1) {
 			//console.log(cleanMsg);
+
 			chat_line = doog_regex(txt);
 			$("div#chat .chatline:last-child").html(gets_date() + ' ' + chat_line);
+
 		}
 
 		if (userid == master && id_usr == name_usr) {
@@ -108,4 +103,5 @@ socket.on("chat", function (txt) { //reads chat lines using socket then uses sim
 
 		}
 	}
+
 });
