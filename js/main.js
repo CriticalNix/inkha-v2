@@ -34,7 +34,7 @@ var start_values_check = 0;
 var betid = 0;
 var last_betid = 0;
 var last_betid2 = 0;
-var version_c = "2.0.8";
+var version_c = "2.0.9";
 var heartbeat_bpm = 100; //this is the bots ticker if for some reason the site temp bans  for spam betting lower this to 125
 var bet_data = [];
 var arr_bets = [];
@@ -141,6 +141,7 @@ function stop_bank() {
         var stop_bank = parseFloat($("#stop_bank").val());
         if (bal_checked >= stop_bank) {
             running = 0;
+
         }
     }
 }
@@ -150,12 +151,15 @@ function profit_lock() {
         var bal_checked = parseFloat($("#pct_balance").val()); //profit_lock_val
         var profit_lock_val = parseFloat($("#profit_lock_val").val());
         var checky_bal = bal_checked - profit_lock_val;
+
         if (current_profit >= profit_lock_val && profit_lock_a == 0) {
             profit_lock_a = 1;
+            console.log('profit lock active');
         }
 
         if (checky_bal <= 0 && profit_lock_a == 1) {
             running = 0;
+            console.log('reached bottom');
         }
     }
 }
