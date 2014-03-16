@@ -34,7 +34,7 @@ var start_values_check = 0;
 var betid = 0;
 var last_betid = 0;
 var last_betid2 = 0;
-var version_c = "2.0.7";
+var version_c = "2.0.8";
 var heartbeat_bpm = 100; //this is the bots ticker if for some reason the site temp bans  for spam betting lower this to 125
 var bet_data = [];
 var arr_bets = [];
@@ -139,6 +139,17 @@ function stop_bank() {
         var bal_checked = parseFloat($("#pct_balance").val());
         var stop_bank = parseFloat($("#stop_bank").val());
         if (bal_checked >= stop_bank) {
+            running = 0;
+        }
+    }
+}
+
+function profit_lock() {
+    if ($('#profit_lock').prop('checked')) {
+        var bal_checked = parseFloat($("#pct_balance").val()); //profit_lock_val
+        var profit_lock_val = parseFloat($("#profit_lock_val").val());
+        var checky_bal = bal_checked - profit_lock_val;
+        if (checky_bal <= 0) {
             running = 0;
         }
     }
@@ -264,6 +275,7 @@ function results() {
         max_loss_streak();
         max_win_streak();
         stop_bank();
+        profit_lock();
 
         var win = ($($(result).children(".profit")).text()[0] == "+");
         //console.log('win:' + win + '\n');
@@ -830,9 +842,13 @@ function gui() { //
     $bet_logging = $('<div style="margin-right:10px"><font color="white"><input type="checkbox" value="1" name="bet_logging" id="bet_logging" /> bet logging enabled  </font></div>');
     $o_row1.append($bet_logging);
 
-    //bet_logging
-    $bet_logging = $('<div style="margin-right:10px"><font color="white"><input type="checkbox" value="1" name="bet_logging" id="bet_logging" /> bet logging enabled  </font></div>');
-    $o_row1.append($bet_logging);
+    //profit_lock
+    $profit_lock = $('<div style="margin-right:10px"><font color="white"><input type="checkbox" value="1" name="profit_lock" id="profit_lock" /> Profit lock </font></div>');
+    $o_row1.append($profit_lock);
+
+    //profit_lock_val
+    $profit_lock_val = $('<div style="margin-left:10px;margin-right:10px"><font color="white"><input style="border:1px solid; border-color: #505050;" id="profit_lock_val" value="0"/> value to lock as profit </font></div>');
+    $o_row1.append($profit_lock_val);
 
     //graph_length
     $graph_length = $('<div style="margin-left:10px;margin-right:10px"><font color="white"><input style="border:1px solid; border-color: #505050;" id="graph_length" value="200"/> max graph length  </font></div>');
@@ -990,7 +1006,7 @@ function gui() { //
     /*
     $showhidetrigger7 = $('<button title="Much Help" style="margin-right:10px;border:1px solid" id="showhidetrigger6" href="#">HELP</button>'); //Popup help
       $showhidetrigger7.click(function () {
-            randomizer();	
+            randomizer();   
     });
       $container.append($showhidetrigger7); 
 */
