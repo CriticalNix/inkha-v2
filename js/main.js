@@ -67,6 +67,7 @@ var jdt = "Just-Dice.com";
 var delay_bet = 1000;
 var reset_check = 0;
 var win_ratio = 0;
+var profit_lock_a = 0;
 
 
 var dep = [];
@@ -149,7 +150,11 @@ function profit_lock() {
         var bal_checked = parseFloat($("#pct_balance").val()); //profit_lock_val
         var profit_lock_val = parseFloat($("#profit_lock_val").val());
         var checky_bal = bal_checked - profit_lock_val;
-        if (checky_bal <= 0) {
+        if (current_profit >= profit_lock_val && profit_lock_a == 0) {
+            profit_lock_a = 1;
+        }
+
+        if (checky_bal <= 0 && profit_lock_a == 1) {
             running = 0;
         }
     }
