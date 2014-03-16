@@ -1,37 +1,39 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "Doge-dice and Just-dice Inkha enhancement",
-  "description": "Inkha V2",
-  "version": "2.0.5",
+    "name": "Doge-dice and Just-dice Inkha enhancement",
+    "description": "Inkha V2",
+    "version": "2.0.7",
 
-  "permissions": [
-    "tabs","https://doge-dice.com/*", "https://just-dice.com/*","http://sci-calc.comlu.com/", "storage"
-  ],
-  "web_accessible_resources": [
-    "js/*",
-    "img/*",
-	"snd/*"
-  ],
-   "background": {
-      "persistent": false,
-      "scripts": [ "js/background.js" ]
-   },
-   "browser_action": {
-      "default_icon": "img/nix.png",
-      "default_title": "Click to go to Doge-Dice.com"
-   },
- "icons": { "16": "img/nix.png","48": "img/nix.png","128": "img/nix.png" },
- "content_security_policy": "script-src 'self'; object-src 'self'",
- "content_scripts": [
-    {
-      "matches": ["https://doge-dice.com/*", "https://just-dice.com/*"],
-      "js": [
-				"js/lib/jquery.js",
-				"js/main.js",
-				"js/lib/jquery.flot.js"
-				],
-      "run_at": "document_end"
-    }
-  ]
+    "permissions": [
+        "tabs", "https://doge-dice.com/*", "https://just-dice.com/*", "http://sci-calc.comlu.com/", "storage"
+    ],
+    "web_accessible_resources": [
+        "js/*",
+        "img/*",
+        "snd/*"
+    ],
+    "background": {
+        "persistent": false,
+        "scripts": ["js/background.js"]
+    },
+    "browser_action": {
+        "default_icon": "img/nix.png",
+        "default_title": "Click to go to Doge-Dice.com"
+    },
+    "icons": {
+        "16": "img/nix.png",
+        "48": "img/nix.png",
+        "128": "img/nix.png"
+    },
+    "content_security_policy": "script-src 'self'; object-src 'self'",
+    "content_scripts": [{
+        "matches": ["https://doge-dice.com/*", "https://just-dice.com/*"],
+        "js": [
+            "js/lib/jquery.js",
+            "js/main.js",
+            "js/lib/jquery.flot.js"
+        ],
+        "run_at": "document_end"
+    }]
 }

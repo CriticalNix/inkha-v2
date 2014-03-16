@@ -34,7 +34,7 @@ var start_values_check = 0;
 var betid = 0;
 var last_betid = 0;
 var last_betid2 = 0;
-var version_c = "2.0.5";
+var version_c = "2.0.7";
 var heartbeat_bpm = 100; //this is the bots ticker if for some reason the site temp bans  for spam betting lower this to 125
 var bet_data = [];
 var arr_bets = [];
@@ -96,7 +96,7 @@ function heart_beat() {
 
 function includeJS(jsFile) {
     $('head').append($('<script>').attr('type', 'text/javascript').attr('src', jsFile));
-} 
+}
 
 //-------------------------------------- determine if we are on just-dice or doge-dice
 function which_site() {
@@ -116,22 +116,22 @@ function which_site() {
 //-------------------------------------- increments max loss and max win display 
 function max_loss_streak() { // longest loss streak
     $("#maxLossInput").css("color", "red");
-        if (lose1 > max_loss) {
-            max_loss++;
-            $("#maxLossInput").val(max_loss);
-        } else {
-            // nothing here move along XD
-        }
+    if (lose1 > max_loss) {
+        max_loss++;
+        $("#maxLossInput").val(max_loss);
+    } else {
+        // nothing here move along XD
+    }
 }
 
 function max_win_streak() { //longest win streak
     $("#maxWinInput").css("color", "green");
-        if (win1 > max_win) {
-            max_win++;
-            $("#maxWinInput").val(max_win);
-        } else {
-            // nothing here move along XD
-        }
+    if (win1 > max_win) {
+        max_win++;
+        $("#maxWinInput").val(max_win);
+    } else {
+        // nothing here move along XD
+    }
 }
 
 function stop_bank() {
@@ -173,53 +173,53 @@ function randomString(length) {
 
 //--------------------------------------- Local storage functions
 function clearItem(key, value) {
-		//console.log("Removing [" + key + ":" + value + "]");
-		window.localStorage.removeItem(key);
+    //console.log("Removing [" + key + ":" + value + "]");
+    window.localStorage.removeItem(key);
 }
 
 function setItem(key, value) {
-	//console.log("Storing [" + key + ":" + value + "]");
-	window.localStorage.removeItem(key);
-	window.localStorage.setItem(key, value);
-	//console.log("Return from setItem" + key + ":" + value);
+    //console.log("Storing [" + key + ":" + value + "]");
+    window.localStorage.removeItem(key);
+    window.localStorage.setItem(key, value);
+    //console.log("Return from setItem" + key + ":" + value);
 }
 
 function getItem(key) {
-	var value;
-	//console.log('Retrieving key [' + key + ']');
-	value = window.localStorage.getItem(key);
-	//console.log("Returning value: " + value);
-	return value;
+    var value;
+    //console.log('Retrieving key [' + key + ']');
+    value = window.localStorage.getItem(key);
+    //console.log("Returning value: " + value);
+    return value;
 }
 
 //--------------------------------------- store and load functions
-function loads(){
-var l1 = getItem('limiter');
-var m1 = getItem('multiplier');
-var r1 = getItem('reset_step');
-var r2 = getItem('reset_value');
-var s1 = getItem('stop_bank');
+function loads() {
+    var l1 = getItem('limiter');
+    var m1 = getItem('multiplier');
+    var r1 = getItem('reset_step');
+    var r2 = getItem('reset_value');
+    var s1 = getItem('stop_bank');
 
-	$('#limiter').val(l1);
-	$('#multiplier').val(m1);
-	$('#reset_step').val(r1);
-	$('#reset_value').val(r2);
-	$('#stop_bank').val(s1);
+    $('#limiter').val(l1);
+    $('#multiplier').val(m1);
+    $('#reset_step').val(r1);
+    $('#reset_value').val(r2);
+    $('#stop_bank').val(s1);
 
 }
 
 function saves() {
 
-	var limiters = parseFloat($("#limiter").val());
-	var multipliers = parseFloat($("#multiplier").val());
-	var reset_steps = parseFloat($("#reset_step").val());
-	var reset_values = parseFloat($("#reset_value").val());
-	var stop_banks = parseFloat($("#stop_bank").val());
-	setItem('limiter', limiters);
-	setItem('multiplier', multipliers);
-	setItem('reset_step', reset_steps);
-	setItem('reset_value', reset_values);
-	setItem('stop_bank', stop_banks);
+    var limiters = parseFloat($("#limiter").val());
+    var multipliers = parseFloat($("#multiplier").val());
+    var reset_steps = parseFloat($("#reset_step").val());
+    var reset_values = parseFloat($("#reset_value").val());
+    var stop_banks = parseFloat($("#stop_bank").val());
+    setItem('limiter', limiters);
+    setItem('multiplier', multipliers);
+    setItem('reset_step', reset_steps);
+    setItem('reset_value', reset_values);
+    setItem('stop_bank', stop_banks);
 
 }
 
@@ -260,11 +260,11 @@ function results() {
 
     if (betid != last_betid) {
         last_betid = betid;
-        
+
         max_loss_streak();
         max_win_streak();
         stop_bank();
-        
+
         var win = ($($(result).children(".profit")).text()[0] == "+");
         //console.log('win:' + win + '\n');
         if (win) {
@@ -335,7 +335,7 @@ function stats_update() {
     var results = $("div#me .results")[0];
     var result = $(results).children()[0];
     var betid = $($(result).children(".betid")).text();
-        balance = parseFloat($("#pct_balance").val());
+    balance = parseFloat($("#pct_balance").val());
 
 
     cBust1 = 1 - ccbust1 / 100;
@@ -350,10 +350,10 @@ function stats_update() {
     }
 
     $("#ebank").val(balance);
-    
+
     //betsInput ---total bets
     $("#betsInput").val(run_round);
-    
+
     //current loss length
     $("#c_loss").val(lose1);
 
@@ -370,10 +370,10 @@ function stats_update() {
     if (isNaN(win_ratio)) {
         win_ratio = 0;
     }
-    if (win_ratio !== 0){
+    if (win_ratio !== 0) {
         win_ratio = win_ratio - ccbust1;
     }
-    
+
     $("#percentWonInput").val(win_ratio.toFixed(8));
 
     if ($("#reconnect").is(':visible')) { //Thanks 'eltopo' prevents user timeout.
@@ -405,28 +405,28 @@ function save_to_file() {
 
 function popArray() { //populate bet array
 
-	if ($('#bet_logging').prop('checked')) {
-		var results = $("div#me .results")[0];
-		var result = $(results).children()[0];
-		var betid = $($(result).children(".betid")).text();
-		var c_balance = parseFloat($("#pct_balance").val());
-		var c_chance = parseFloat($("#pct_chance").val());
-		var arr_bet = parseFloat($("#pct_bet").val());
+    if ($('#bet_logging').prop('checked')) {
+        var results = $("div#me .results")[0];
+        var result = $(results).children()[0];
+        var betid = $($(result).children(".betid")).text();
+        var c_balance = parseFloat($("#pct_balance").val());
+        var c_chance = parseFloat($("#pct_chance").val());
+        var arr_bet = parseFloat($("#pct_bet").val());
 
-		arr_bets.push('\n');
-		arr_bets.push(gets_date() + '   ');
-		arr_bets.push('Bet number:' + run_round + '   ');
-		arr_bets.push('betid:' + betid + '   ');
-		arr_bet1 = scientific(arr_bet);
-		arr_bet2 = parseFloat(arr_bet1).toFixed(8);
-		arr_bets.push('bet amount:' + arr_bet2 + '   ');
-		arr_bets.push('Balance:' + c_balance + '   ');
-		arr_profit = scientific(current_profit);
-		arr_profit2 = parseFloat(arr_profit).toFixed(8);
-		arr_bets.push('profit:' + arr_profit2 + '   ');
-		arr_bets.push('chance:' + c_chance + '   |');
-	}
-    
+        arr_bets.push('\n');
+        arr_bets.push(gets_date() + '   ');
+        arr_bets.push('Bet number:' + run_round + '   ');
+        arr_bets.push('betid:' + betid + '   ');
+        arr_bet1 = scientific(arr_bet);
+        arr_bet2 = parseFloat(arr_bet1).toFixed(8);
+        arr_bets.push('bet amount:' + arr_bet2 + '   ');
+        arr_bets.push('Balance:' + c_balance + '   ');
+        arr_profit = scientific(current_profit);
+        arr_profit2 = parseFloat(arr_profit).toFixed(8);
+        arr_bets.push('profit:' + arr_profit2 + '   ');
+        arr_bets.push('chance:' + c_chance + '   |');
+    }
+
 }
 
 //-------------------------------------- Show version in footer
@@ -478,12 +478,15 @@ function bet_click(bet_value) {
     var marti_limit = parseFloat($("#limiter").val());
     var marti_reset_value = parseFloat($("#reset_value").val()); //value to reset to
     var marti_reset_step = parseFloat($("#reset_step").val()); //step number to reset to
+    var balance_check_1 = parseFloat($("#pct_balance").val());
+    var x = $("#step_option").val()
+
     delay_bet = parseFloat($("#bot_delay_length").val());       
 
     if (reset_steps == (marti_reset_step - 1) && betting === 0 && running == 1 && $('#resetL_check').prop('checked')) {
-    
+
         reset_steps = 0;
-    
+
         if ($('#switch_loss_check').prop('checked') && betting === 0 && running == 1) {
             if (hi_lo) {
                 betting = 1;
@@ -492,7 +495,11 @@ function bet_click(bet_value) {
                 $("#pct_bet").val(bet);
 
                 setTimeout(function() {
-                    $("#a_hi").trigger('click');
+                    if (bet > balance_check_1) {
+                        bust();
+                    } else {
+                        $("#a_hi").trigger('click');
+                    }
                 }, delay_bet);
 
             } else {
@@ -502,18 +509,91 @@ function bet_click(bet_value) {
                 $("#pct_bet").val(bet);
 
                 setTimeout(function() {
-                    $("#a_lo").trigger('click');
+                    if (bet > balance_check_1) {
+                        bust();
+                    } else {
+                        $("#a_lo").trigger('click');
+                    }
+                }, delay_bet);
+            }
+        } else if ($('#rstep_opts').prop('checked') && betting === 0 && running == 1) { //rstep_opts
+            if (hi_lo) {
+                betting = 1;
+
+                var step_option_num = parseFloat($("#option_loss").val());
+
+                if ($('#step_option option:selected').val() == 1) {
+
+                    var bet = (bet_value * marti_reset_value) + step_option_num;
+                    bet = scientific(bet);
+                    console.log('new bet: ' + bet + ' added: ' + step_option_num);
+                    $("#pct_bet").val(bet);
+
+                } else if ($('#step_option option:selected').val() == 2) {
+
+                    var bet = (bet_value * marti_reset_value) - step_option_num;
+                    bet = scientific(bet);
+                    if (bet < 0) {
+                        console.log('Preventing negative number:: bet set to minimum');
+                        bet = 0.00000001;
+                    }
+                    console.log('new bet: ' + bet + ' minus: ' + step_option_num);
+                    $("#pct_bet").val(bet);
+
+                }
+                setTimeout(function() {
+                    if (bet > balance_check_1) {
+                        bust();
+                    } else {
+                        $("#a_hi").trigger('click');
+                    }
+                }, delay_bet);
+
+            } else {
+                betting = 1;
+                var step_option_num = parseFloat($("#option_loss").val());
+
+                if ($('#step_option option:selected').val() == 1) {
+
+                    var bet = (bet_value * marti_reset_value) + step_option_num;
+                    bet = scientific(bet);
+                    console.log('new bet: ' + bet + ' added: ' + step_option_num);
+                    $("#pct_bet").val(bet);
+
+                } else if ($('#step_option option:selected').val() == 2) {
+
+                    var bet = (bet_value * marti_reset_value) - step_option_num;
+                    bet = scientific(bet);
+                    if (bet < 0) {
+                        console.log('Preventing negative number:: bet set to minimum');
+                        bet = 0.00000001;
+                    }
+                    console.log('new bet: ' + bet + ' minus: ' + step_option_num);
+                    $("#pct_bet").val(bet);
+
+                }
+
+                setTimeout(function() {
+                    if (bet > balance_check_1) {
+                        bust();
+                    } else {
+                        $("#a_lo").trigger('click');
+                    }
                 }, delay_bet);
             }
         } else {
 
             betting = 1;
-                var bet = bet_value * marti_reset_value;
-                bet = scientific(bet);
-                $("#pct_bet").val(bet);
+            var bet = bet_value * marti_reset_value;
+            bet = scientific(bet);
+            $("#pct_bet").val(bet);
 
             setTimeout(function() {
-                $("#a_hi").trigger('click');
+                if (bet > balance_check_1) {
+                    bust();
+                } else {
+                    $("#a_hi").trigger('click');
+                }
             }, delay_bet);
         }
     } else if (steps < marti_limit && betting === 0 && running == 1) {
@@ -523,7 +603,11 @@ function bet_click(bet_value) {
                 bet_value = scientific(bet_value);
                 $("#pct_bet").val(bet_value);
                 setTimeout(function() {
-                    $("#a_hi").trigger('click');
+                    if (bet > balance_check_1) {
+                        bust();
+                    } else {
+                        $("#a_hi").trigger('click');
+                    }
                 }, delay_bet);
 
             } else {
@@ -531,7 +615,11 @@ function bet_click(bet_value) {
                 bet_value = scientific(bet_value);
                 $("#pct_bet").val(bet_value);
                 setTimeout(function() {
-                    $("#a_lo").trigger('click');
+                    if (bet > balance_check_1) {
+                        bust();
+                    } else {
+                        $("#a_lo").trigger('click');
+                    }
                 }, delay_bet);
             }
         } else {
@@ -541,7 +629,11 @@ function bet_click(bet_value) {
             $("#pct_bet").val(bet_value);
 
             setTimeout(function() {
-                $("#a_hi").trigger('click');
+                if (bet > balance_check_1) {
+                    bust();
+                } else {
+                    $("#a_hi").trigger('click');
+                }
             }, delay_bet);
         }
     } else if (randomizing == 1) {
@@ -562,8 +654,8 @@ function bust() {
 
 //-------------------------Looks at bet depth and passes it to array ready for bar chart.
 function depth(x) {
-    if(!dep[x]){
-     dep[x] = 1;
+    if (!dep[x]) {
+        dep[x] = 1;
     } else {
         dep[x]++;
     }
@@ -612,7 +704,7 @@ function generate_bar_graph() {
     var res = [];
     for (var i = 0; i < dep.length; ++i) {
 
-            res.push([i, dep[i]]);
+        res.push([i, dep[i]]);
 
     }
 
@@ -621,7 +713,7 @@ function generate_bar_graph() {
 
 function update_graphs() {
     var g_bal = $('#pct_balance').val();
-    var ev_data1 = $("#percentWonInput").val(); 
+    var ev_data1 = $("#percentWonInput").val();
 
     ev_data.push(ev_data1);
     bet_data.push(g_bal);
@@ -630,47 +722,47 @@ function update_graphs() {
     var data2 = generate_ev_graph();
 
     var data = [{
-    		data : data1,
-    		label : "profit",
-            yaxis: 1,
-            color: 'green',
-    		lines : {
-    			show : true
-    		}
-    	}, {
-    		data : data2,
-    		label : "EV",
-            yaxis: 2,
-            color: 'red',
-    		lines : {
-    			show : true
-    		}
-    	}
-    ];
-    
+        data: data1,
+        label: "profit",
+        yaxis: 1,
+        color: 'green',
+        lines: {
+            show: true
+        }
+    }, {
+        data: data2,
+        label: "EV",
+        yaxis: 2,
+        color: 'red',
+        lines: {
+            show: true
+        }
+    }];
+
     var options = {
-    	legend : {
-    		position : "nw",
+        legend: {
+            position: "nw",
             noColumns: 2,
             container: $("#chartLegend")
-    	},
-    	yaxes : [{
+        },
+        yaxes: [{
 
-    		}, {
-    			position : "right"
-    		}
-    	]
+        }, {
+            position: "right"
+        }]
     };
-    
+
     var plotb = $.plot("#g_placeholder2", [generate_bar_graph()], {
         series: {
             color: '#cdffcc'
         },
-        bars: { show: true },
+        bars: {
+            show: true
+        },
         yaxis: {},
         xaxis: {}
     });
-    
+
     var plot2 = $.plot("#g_placeholder", data, options);
 
     plotb.setData([generate_bar_graph()]);
@@ -733,14 +825,14 @@ function gui() { //
     //randomizer_check
     $randomizer_check = $('<div style="margin-right:10px"><font color="white"><input type="checkbox" value="1" name="randomizer_check" id="randomizer_check" /> randomize every 12  </font></div>');
     $o_row1.append($randomizer_check);
-    
+
     //bet_logging
     $bet_logging = $('<div style="margin-right:10px"><font color="white"><input type="checkbox" value="1" name="bet_logging" id="bet_logging" /> bet logging enabled  </font></div>');
     $o_row1.append($bet_logging);
 
     //bet_logging
     $bet_logging = $('<div style="margin-right:10px"><font color="white"><input type="checkbox" value="1" name="bet_logging" id="bet_logging" /> bet logging enabled  </font></div>');
-    $o_row1.append($bet_logging);    
+    $o_row1.append($bet_logging);
 
     //graph_length
     $graph_length = $('<div style="margin-left:10px;margin-right:10px"><font color="white"><input style="border:1px solid; border-color: #505050;" id="graph_length" value="200"/> max graph length  </font></div>');
@@ -749,6 +841,13 @@ function gui() { //
     //bot_delay_length
     $bot_delay_length = $('<div style="margin-left:10px;margin-right:10px"><font color="white"><input style="border:1px solid; border-color: #505050;" id="bot_delay_length" value="0"/> bot delay. 1000 = 1 second  </font></div>');
     $o_row1.append($bot_delay_length);
+
+    $optional_lossInput = $('<form style="margin-left:10px;margin-right:10px" action=""><input style="border:1px solid; border-color: #505050;" id="option_loss" value="0"/><select id="step_option" name="step_option"><option value="1">plus</option><option value="2">minus</option></select><font color="white"> R step opts</font></form>'); 
+    $o_row1.append($optional_lossInput);
+
+    //rstep_opts
+    $rstep_opts = $('<div style="margin-right:10px"><font color="white"><input type="checkbox" value="1" name="rstep_opts" id="rstep_opts" /> Enable R step opts</font></div>');
+    $o_row1.append($rstep_opts);
 
     //-------------------------------------- builds user interface
     $container = $('<div id="chipper" class="container"/>');
@@ -782,7 +881,7 @@ function gui() { //
         console.log('running = 1' + '\n' + 'Start bet:' + scientific(reset_bet));
     });  
     $run_div.append($run);
-    
+
     $store = $('<button id="c_run" style="color:blue;margin-bottom:5px;margin-top:5px;margin-right:2px;height:22px">Store</button>');
     $store.click(function() {
         //-----
@@ -790,15 +889,14 @@ function gui() { //
         //-----
     });  
     $run_div.append($store); 
-    
+
     $load = $('<button id="c_run" style="color:blue;margin-bottom:5px;margin-top:5px;margin-right:2px;height:22px">Load</button>');
     $load.click(function() {
         //-----
         loads();
         //-----
     });  
-    $run_div.append($load); 
-         
+    $run_div.append($load);      
     $Stop = $('<button id="c_stop" style="color:red;margin-bottom:5px;margin-top:5px;height:22px">Stop</button>');  
     $Stop.click(function() {
         //-----
@@ -807,7 +905,7 @@ function gui() { //
         running = 0;
         console.log('running = 0' + '\n');
         steps = 0;
-    });     
+    });  
     $run_div.append($Stop);
 
     $reset = $('<button title="Resets stats" style="margin-right:10px;border:1px solid" id="fleft chatbutton" >reset stats</button>');  
@@ -828,7 +926,7 @@ function gui() { //
         ]);
     });  
     $container.append($showhidetrigger3);
-    
+
     $showhidetrigger3 = $('<button title="Toggles bot depth graph" style="margin-right:10px;border:1px solid" id="showhidetrigger4" href="#">depth</button>'); //toggle hide for graph
       
     $showhidetrigger3.click(function() {
@@ -839,7 +937,7 @@ function gui() { //
         ]);
     });  
     $container.append($showhidetrigger3);
-    
+
     $showhidetrigger13 = $('<button title="Toggles bot ev graph" style="margin-right:10px;border:1px solid" id="showhidetrigger4" href="#">ev</button>'); //toggle hide for graph
       
     $showhidetrigger13.click(function() {
@@ -873,7 +971,7 @@ function gui() { //
         basicPopup(help_p);
     });  
     $container.append($showhidetrigger6);
-    
+
     $calculator = $('<button title="Much Help" style="margin-right:10px;border:1px solid" id="calculator" href="#">Calculator</button>'); //Popup help
       
     $calculator.click(function() {
@@ -934,7 +1032,7 @@ function gui() { //
     }
 
     var $row1d = $('<div class="row"/>'); ////////////////////////////////////// row 1d
-    
+
 
     var $reset_step = $('<p style="border:1px solid; border-color: #505050;" class="llabel">reset step</p>');  
     $reset_stepInput = $('<input style="border:1px solid; border-color: #505050;" id="reset_step" value="7"/>');
@@ -944,15 +1042,14 @@ function gui() { //
     $row1d.append($reset_stepEnd);
 
     var $row1e = $('<div class="row"/>'); ////////////////////////////////////// row 1e
-    
+
 
     var $current_loss = $('<p style="border:1px solid; border-color: #505050;" class="llabel">cur loss</p>');  
     $current_lossInput = $('<input style="border:1px solid; border-color: #505050;" id="c_loss" class="readonly" value="0"/>');
     var $current_lossEnd = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">#</p>');  
     $row1e.append($current_loss);  
     $row1e.append($current_lossInput);
-    $row1e.append($current_lossEnd);
-      
+    $row1e.append($current_lossEnd);  
     var $row2a = $('<div class="row"/>'); ////////////////////////////////////////////// row 2a
 
       
@@ -997,7 +1094,7 @@ function gui() { //
     } else if (site === 0) {
         $row2d.append($reset_valueEndb); //฿
     }
-    
+
 
     var $row3a = $('<div class="row"/>'); ///////////////////////////////// row 3a
 
@@ -1062,25 +1159,25 @@ function gui() { //
     } else if (site === 0) {
         $row3e.append($ebankEndb); //฿
     }
-    
+
     //-------------------------------------- Graph Div
     var $graphDiv = $('<fieldset id="chipper3" style="margin-left:70px;background-color:rgba(35,35,35,0.9);border:2px solid; border-color: #999999;width:700px;height:200px;margin-right:3px" class="graph-container"><div style="padding: 0;width:700px;height:200px;margin-right:0px" id="g_placeholder" class="graph-placeholder"></div>'); //graph holder
-    
+
     var $legends = $('</br><div id="chartLegend" style="float:right;margin-right:10px;background-color:rgba(35,35,35,0.5);border:2px solid; border-color: #999999;" ></div>');
-    
+
     var $graphDiv2 = $('<fieldset id="chipperb4" style="margin-left:70px;background-color:rgba(35,35,35,0.9);border:2px solid; border-color: #999999;width:700px;height:100px;margin-right:3px" class="graph-container2"><div style="padding: 0;width:700px;height:100px;margin-right:0px" id="g_placeholder2" class="graph-placeholder2"></div>'); //graph holder
-    
+
     var $graphDiv3 = $('<fieldset id="chipperb5" style="margin-left:70px;background-color:rgba(35,35,35,0.9);border:2px solid; border-color: #999999;width:700px;height:100px;margin-right:3px" class="graph-container2"><div style="padding: 0;width:700px;height:100px;margin-right:0px" id="g_placeholder3" class="graph-placeholder3"></div>'); //graph holder
 
     //-------------------------------------- Putting it all together
 
-    
+
     var $fieldset4 = $('<fieldset style="margin-left:33px;margin-right:auto;background-color:rgba(35,35,35,0.5);border:2px solid; border-color: #999999;"/>');
     $fieldset4.append($run_div);
-    
+
     var $fieldset_o = $('<div id="chipper5" style="margin-top:8px;background-image:url(' + background_imgage + ') ;border:2px solid; border-color: #505050;" class="button_group"/>');
     $fieldset_o.append($o_row1);
-    
+
     var $fieldset = $('<fieldset style="margin-left:50px;margin-right:2px;margin-top:10px;background-color:rgba(35,35,35,0.5);border:2px solid; border-color: #999999;"/>');
     $fieldset.append($row1a);
     $fieldset.append($row1b);
@@ -1101,7 +1198,7 @@ function gui() { //
     $fieldset3.append($row3c);
     $fieldset3.append($row3d);
     $fieldset3.append($row3e);
-    
+
     $button_group.append($fieldset);
     $button_group.append($fieldset2);
     $button_group.append($fieldset3);
@@ -1121,7 +1218,9 @@ function gui() { //
     var $chat_button_group = $('<div style="width:675px;background-color:#787878 ;border:2px solid; border-color: #505050;" />');
 
     $button1 = $('<button title="REALLY DONT PRESS" style="width:80px;margin-right:10px;border:1px solid" id="button1" >DO NOT PRESS</button>');  
-    $button1.click(function() {alert('ok now the world is gonna end... happy?');});  
+    $button1.click(function() {
+        alert('ok now the world is gonna end... happy?');
+    });  
     $chat_button_group.append($button1);
 
     $chat_send.append($chat_button_group);
@@ -1184,7 +1283,8 @@ function scientific(n) {
         return n;
     }
 
-    var num = info[1].replace('.', ''), numDecs = info[2] - 1;
+    var num = info[1].replace('.', ''),
+        numDecs = info[2] - 1;
     var output = "0.";
     for (var i = 0; i < numDecs; i++) {
         output += "0";
@@ -1217,24 +1317,24 @@ function total_check() { //logic and check if bot has enough bank for martingale
             var res_val = parseFloat($("#reset_value").val()) - 1;
             var res_step = parseFloat($("#reset_step").val());
 
-            if ( $('#resetL_check').prop('checked')) {
+            if ($('#resetL_check').prop('checked')) {
 
-                
+
                 for (i = 0; i < $limiterInput.val(); i++) {
-                    
+
                     total += $('#pct_bet').val() * mult;
-                    mult *= $multiplierInput.val(); 	           
-                }			
-                
+                    mult *= $multiplierInput.val();           
+                }
+
                 var total2 = total * res_val;
                 total += total2;
                 $("#required_bank").val(total.toFixed(8));
-                
+
             } else {
-            
+
                 for (i = 0; i < $limiterInput.val(); i++) {
                     total += $('#pct_bet').val() * mult;
-                    mult *= $multiplierInput.val();	           
+                    mult *= $multiplierInput.val();           
                 }
                 $("#required_bank").val(total.toFixed(8));
             }

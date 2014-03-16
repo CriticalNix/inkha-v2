@@ -1,4 +1,5 @@
 var chat_on = 1;
+var alernate = 1;
 
 function gets_date() {
 	var now = new Date();
@@ -76,7 +77,7 @@ socket.on("chat", function (txt) { //reads chat lines using socket then uses sim
 	
 	if (check_announcement) {
     
-        $("div#chat .chatline:last-child").html(gets_date() + ' <font color="blue"><b>' + txt + '</b></font>');
+        $("div#chat .chatline:last-child").html(' <font color="blue">' + txt + '</font>');
         
 	} else {
 
