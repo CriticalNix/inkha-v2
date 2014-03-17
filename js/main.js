@@ -504,7 +504,7 @@ function bet_click(bet_value) {
 
     delay_bet = parseFloat($("#bot_delay_length").val());       
 
-    if (reset_steps == (marti_reset_step - 1) && betting === 0 && running == 1 && $('#resetL_check').prop('checked')) {
+    if (reset_steps == (marti_reset_step - 1) && steps < marti_limit && betting === 0 && running == 1 && $('#resetL_check').prop('checked')) {
 
         reset_steps = 0;
 
@@ -537,7 +537,7 @@ function bet_click(bet_value) {
                     }
                 }, delay_bet);
             }
-        } else if ($('#rstep_opts').prop('checked') && betting === 0 && running == 1) { //rstep_opts
+        } else if ($('#rstep_opts').prop('checked') && steps < marti_limit && betting === 0 && running == 1) { //rstep_opts
             if (hi_lo) {
                 betting = 1;
 
