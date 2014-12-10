@@ -1,12 +1,12 @@
 {
     "manifest_version": 2,
 
-    "name": "Doge-dice and Just-dice Inkha enhancement",
-    "description": "Inkha V2",
+    "name": "Just-dice enhancement",
+    "description": "Inkha V3",
     "version": "2.1.1",
 
     "permissions": [
-        "tabs", "https://doge-dice.com/*", "https://just-dice.com/*", "http://sci-calc.comlu.com/", "storage"
+        "tabs", "https://just-dice.com/*", "http://sci-calc.comlu.com/", "storage"
     ],
     "web_accessible_resources": [
         "js/*",
@@ -28,7 +28,7 @@
     },
     "content_security_policy": "script-src 'self'; object-src 'self'",
     "content_scripts": [{
-        "matches": ["https://doge-dice.com/*", "https://just-dice.com/*"],
+        "matches": ["https://just-dice.com/*"],
         "js": [
             "js/lib/jquery.js",
             "js/main.js",

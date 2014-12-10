@@ -34,7 +34,7 @@ var start_values_check = 0;
 var betid = 0;
 var last_betid = 0;
 var last_betid2 = 0;
-var version_c = "2.1.1";
+var version_c = "3.0.0";
 var heartbeat_bpm = 100; //this is the bots ticker if for some reason the site temp bans  for spam betting lower this to 125
 var bet_data = [];
 var arr_bets = [];
@@ -1047,7 +1047,7 @@ function gui() { //
     var $required_bank = $('<p style="border:1px solid; border-color: #505050;" class="llabel">required </p>');  
     $required_bankInput = $('<input style="border:1px solid; border-color: #505050;" id="required_bank" class="readonly" value="0"/>');
     var $required_bankEnd = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">Ð</p>');
-    var $required_bankEndb = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">฿</p>');  
+    var $required_bankEndb = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">€</p>');  
     $row1c.append($required_bank);  
     $row1c.append($required_bankInput);
     if (site == 1) {
@@ -1117,7 +1117,7 @@ function gui() { //
     if (site == 1) {
         $row2d.append($reset_valueEnd); //Ð
     } else if (site === 0) {
-        $row2d.append($reset_valueEndb); //฿
+        $row2d.append($reset_valueEndb); //€
     }
 
 
@@ -1146,13 +1146,13 @@ function gui() { //
     var $profit = $('<p style="border:1px solid; border-color: #505050;" class="llabel">profit</p>');  
     $profitInput = $('<input style="border:1px solid; border-color: #505050;" id="profitInput" class="readonly" value="0.00000000"/>');
     var $profitEnd = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">Ð</p>');
-    var $profitEndb = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">฿</p>');  
+    var $profitEndb = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">€</p>');  
     $row3c.append($profit);  
     $row3c.append($profitInput);
     if (site == 1) {
         $row3c.append($profitEnd); //Ð
     } else if (site === 0) {
-        $row3c.append($profitEndb); //฿
+        $row3c.append($profitEndb); //€
     }
 
     var $row3d = $('<div class="row"/>'); ////////////////////////////////////////////// row 3d
@@ -1161,13 +1161,13 @@ function gui() { //
     var $stop_bank = $('<p style="border:1px solid; border-color: #505050;" class="llabel">stop bank</p>');  
     $stop_bankInput = $('<input style="border:1px solid; border-color: #505050;" id="stop_bank" value="0.00000000"/>');
     var $stop_bankEnd = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">Ð</p>');
-    var $stop_bankEndb = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">฿</p>');  
+    var $stop_bankEndb = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">€</p>');  
     $row3d.append($stop_bank);  
     $row3d.append($stop_bankInput);
     if (site == 1) {
         $row3d.append($stop_bankEnd); //Ð
     } else if (site === 0) {
-        $row3d.append($stop_bankEndb); //฿
+        $row3d.append($stop_bankEndb); //€
     }
 
     var $row3e = $('<div class="row"/>'); ////////////////////////////////////////////// row 3e
@@ -1176,13 +1176,13 @@ function gui() { //
     var $ebank = $('<p style="border:1px solid; border-color: #505050;" class="llabel">bank</p>');  
     $ebankInput = $('<input style="border:1px solid; border-color: #505050;" id="ebank" class="readonly" value="0.00000000"/>');
     var $ebankEnd = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">Ð</p>');
-    var $ebankEndb = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">฿</p>');  
+    var $ebankEndb = $('<p style="border:1px solid; border-color: #505050;" class="rlabel">€</p>');  
     $row3e.append($ebank);  
     $row3e.append($ebankInput);
     if (site == 1) {
         $row3e.append($ebankEnd); //Ð
     } else if (site === 0) {
-        $row3e.append($ebankEndb); //฿
+        $row3e.append($ebankEndb); //€
     }
 
     //-------------------------------------- Graph Div
