@@ -73,27 +73,21 @@ function emoticons(text) { //emotes are checked and passed into a string before 
 
 }
 
-socket.on("chat", function(txt) { //reads chat lines using socket then uses simple jquery to replace the line with one containing emotes.
+socket.on("chat", function (txt) { //reads chat lines using socket then uses simple jquery to replace the line with one containing emotes.
 
-    var announcement = /(^|\s)###(\s|$)/;
-    var ignored = /(^|\s)ignoring(\s|$)/;
-    var usage = /(^|\s)usage(\s|$)/;
-    var check_announcement = announcement.exec(txt);
-    var check_ignore = ignored.exec(txt);
-    var check_usage = usage.exec(txt);
 	var parent = $('.chatlog').parents('.chatscroll');
 	var $parentfound = parent.find('.chatline:last');
-
-	if (check_announcement || check_ignore || check_usage) {
-
-
-		$parentfound.html(gets_date() + ' <font color="red">' + txt + '</font>');
-
-	} else if (txt.substring(0, 1) == '[') { // is message
+	var user_regex = txt.match(/\([0-9]+\)/);
+	var matches = txt.match(user_regex);
+	var is_chat = 0;
 	
-		$parentfound.html(gets_date() + ' <font color="blue">' + txt + '</font>');
-	
+	if (matches){
+		is_chat = 1;
 	} else {
+		is_chat = 0;
+	}
+
+	if (is_chat == 1) {
 
 		var master = $('#uid').text();
 		var name_usr = $('#nick').text();
@@ -108,12 +102,12 @@ socket.on("chat", function(txt) { //reads chat lines using socket then uses simp
 			$parentfound.html(gets_date() + ' ' + chat_line);
 		}
 
-        if (userid == master && id_usr == name_usr) {
-            if (cleanMsg == "!emote") {
-                chat_on = !chat_on;
-            }
+		if (userid == master && id_usr == name_usr) {
+			if (cleanMsg == "!emote") {
+				chat_on = !chat_on;
+			}
 
-        }
-    }
+		}
+	}
 
 });
