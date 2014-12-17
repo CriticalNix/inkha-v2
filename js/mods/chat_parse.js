@@ -1,7 +1,7 @@
 var chat_on = 1;
 var alernate = 1;
 
-document.body.background = "http://i.imgur.com/mSBHmBL.jpg";
+//document.body.background = "http://i.imgur.com/mSBHmBL.jpg";
 
 function gets_date() {
     var now = new Date();
