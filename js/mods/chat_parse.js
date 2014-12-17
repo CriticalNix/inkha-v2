@@ -79,11 +79,10 @@ socket.on("chat", function (txt) { //reads chat lines using socket then uses sim
 	var parent = $('.chatlog').parents('.chatscroll');
 	var $parentfound = parent.find('.chatline:last');
 	var user_regex = txt.match(/\([0-9]+\)/);
-	var reg_us2 = txt.match(/\<([^)]+)\>/);
 	var matches = txt.match(user_regex);
 	var is_chat = 0;
 	
-	if (matches && reg_us2){
+	if (matches){
 		is_chat = 1;
 	} else {
 		is_chat = 0;
