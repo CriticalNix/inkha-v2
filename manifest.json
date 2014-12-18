@@ -3,7 +3,7 @@
 
     "name": "Just-dice enhancement",
     "description": "Inkha V3",
-    "version": "2.1.1",
+    "version": "3.0.2",
 
     "permissions": [
         "tabs", "https://just-dice.com/*", "http://sci-calc.comlu.com/", "storage"
