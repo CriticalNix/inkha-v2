@@ -15,14 +15,83 @@ function gets_date() {
     return strDateTime;
 }
 
-function clicked_action_bet(which) {send_bet(which)}
+function linkify_uid(e) {
+	var t = e.match(/^[(]([0-9]+)[)] &lt;(@?)(.*)&gt;$/);
+	if (!t) {
+		return e;
+	} else {
+		var n = t[1],
+		r = t[2],
+		i = t[3];
+		return '<span onclick="u(' + n + ');">(' + n + ')</span> <span onclick="n(' + "'" + i + "'" + ');">&lt;' + r + i + "&gt;</span>"
+	}
+}
+
+function doog_regex(t) {
+
+t=quote_html(t);
 
 
-function doog_regex(txt) {
+if (!n) {
+	var i = t.match(/^[[] (.*?) → (.*?) ](.*)$/);
+	if (i) {
 
-    //var name_usr = "the";
-txt=quote_html(txt).replace(/([^0-9a-z#])((?:betid|roll):? |#)([1-9][0-9]{4,9})\b/ig,'$1<a target="_blank" href="/roll/$3">$2$3</a>').replace(/(https:\/\/just-dice[.]com\/roll\/)([1-9][0-9]{0,9})/ig,' <a target="_blank" href="/roll/$2">$2</a> ').replace(/(bitcoin-talk|bticointakl)/ig,"$1 (a phishing site, do not visit)").replace(/lnputs[.]io/ig,"Lnputs.io (a phishing site, do not visit)").replace(/dicen[o0]w/ig,"dice-now").replace(/letsdice/ig,"lets-dice").replace(/grindabit/ig,"spamalot [lol jk]").replace(/bitdice[.]de/ig,"[yet more spam]").replace(/(http:\/\/just-dice[.]blogspot[.](?:ca|com)\/[0-9]+\/[0-9]+\/([a-z0-9-]+)(?:_[0-9]+)?[.]html)/ig,'[<a target="_blank" href="$1">$2</a>]').replace(/([?]|&amp;)(r|ref[a-z]*)=\s*(?:.+?\b)/ig,"$1$2= [spam link] ").replace(/(\/ref\/[0-9a-z\/]*)/ig," [spam link]").replace(/(speedy[.]sh|bit[.]ly|gg[.]gg|goo[.]gl|is[.]gd|tinyurl[.]com|ge[.]tt)\/[a-z0-9]{4,}/ig,"[suspicious link]").replace(/\bbitwars\b/ig,"[spam link]").replace(/\bmegaapp\b/ig,"[suspicious link]").replace(/\b(javascript:)/i,"[potential scam warning] $1").replace(/([a-z0-9.-_]*buybtc[a-z0-9.-_]*@gmail[.])com/ig,"I am a scammer and will steal your coins!  $1cum to meet your sticky end!").replace(/([a-z0-9.-_]*buybtc[a-z0-9.-_]*@gmail[.])com/ig,"").replace(/([^a-z])[ᴦrг]⁠*[aäΑА]⁠*[pр]⁠*[eеΕ]/ig,"$1tickle").replace(/([^a-z])[ᴦrг]⁠*[aäΑА]⁠*[pр]⁠*i⁠*([^d])/ig,"$1tickli$2").replace(/([^a-z])[ᴦrг]⁠*[aäΑА]⁠*[eеΕ]⁠*[pр]/ig,"$1tickel").replace(/([^a-z])[ᴦrг]⁠*[aäΑА]⁠*[eеΕ]⁠*[pр]⁠*i/ig,"$1tickeli").replace(/((?:(?:[nñṉɴⓝΝ]|[1iḭіlɪ!|\\/]⁠*[1iḭіlɪ!|\\/]⁠*[1iḭіlɪ!|\\/])(?:[⁠ ]*))+)((?:[1iḭіlɪ!|ⓘ][⁠ ]*)+)([gḡǥɢⓖ9][⁠ ]*)((?:[gḡǥɢⓖ9][⁠ ]*)+)((?:(?:[3eḛееΕᴇuⓔaäḁа@iḭі][⁠ ]*)+)(?:[ᴦrṙягʀⓡ][⁠ ]*)+|(?:[a@äḁаᴀ4ⓐ][⁠ ]*)+)/ig,"$3$2$1$4$5").replace(/(&lt;.*&gt;.*?)\b(butthurt)\b/i,'$1<a target="_blank" href="https://just-dice.com/form.jpg">$2</a>').replace(/(blockchain[.]info\/)(?:[a-w]{2}|zh-cn)\//g,"$1").replace(/([^a-zA-Z0-9=?/])(?:(?:tx(?:id)?)?:)?(?:(?:https?:\/\/)?khashier[.]com\/tx(?:-index)?\/)?([0-9a-f]{8})([0-9a-f]{56})\b/g,'$1[<a target="_blank" href="http://khashier.com/tx/$2$3">$2</a>]').replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?blockchain[.]info\/address\/)?(1[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g,'$1[<a target="_blank" href="http://blockchain.info/address/$2$3">$2</a>]').replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?dogechain[.]info\/address\/)?(D[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g,'$1[<a target="_blank" href="http://dogechain.info/address/$2$3">$2</a>]').replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?block-explorer[.]com\/address\/)?(L[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g,'$1[<a target="_blank" href="http://block-explorer.com/address/$2$3">$2</a>]').replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?khashier[.]com\/address\/)?(x[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g,'$1[<a target="_blank" href="http://khashier.com/address/$2$3">$2</a>]').replace(/\b(?:(?:https?:\/\/)?(?:www[.])?polo(?:niex(?:[.]com)?(?:\/exchange\/btc_clam)?)?)\b/ig,'[<a target="_blank" href="https://poloniex.com/exchange/btc_clam">poloniex</a>]').replace(/\bhttps:\/\/ip[.]bitcointalk[.]org\/[?]u=http%3A%2F%2F(i[.]imgur[.]com)%2F([^&]*)&amp;t=[a-z0-9=&_;]*\b/ig,"https://$1/$2").replace(/\b(https?:\/\/(?:i|www)[.]imgur[.]com\/[0-9a-z]{5,7}[.](?:jpe?g|png|gif)(?:[?][0-9]+)?)\b/ig,'[<a target="_blank" href="$1">img</a>]').replace(/\b(https?:\/\/imgur[.]com\/(?:a|gallery)\/[0-9a-z]{5,7}\/?(?:#\d+)?)(?:\b|$)/ig,'[<a target="_blank" href="$1">imgs</a>]').replace(/\b(https?:\/\/(?:(?:www[.])?youtube[.]com\/watch[?]v=|youtu[.]be\/)[0-9a-z_-]{11}[?]?(?:(?:&amp;)?(?:wide|(?:feature|list)=[a-z.0-9]*|t=[0-9msh]+))*)\b/ig,'[<a target="_blank" href="$1">video</a>]').replace(/(&lt;.*&gt;.*?)\b(way she goes)\b/i,'$1<a target="_blank" href="https://youtu.be/gtM9xD-Ky7E">$2</a>').replace(/\b(https?:\/\/(?:(?:www|r2)[.])?reddit[.]com\/r\/([a-z0-9]+)\/comments\/[a-z0-9]+\/([a-z0-9_]+)(?:\/[0-9a-z]+)?\/?)(\b| |$)/ig,'[<a target="_blank" href="$1">reddit:$2 $3</a>]$4').replace(/\b(https:\/\/bitcointalk[.]org\/(?:index[.]php)?[?]topic=[0-9]+(?:[.](?:new#new|(?:msg)?[0-9]+))?(?:;(?:all|topicseen))?(?:#new|#msg[0-9]+)?)\b/ig,'[<a target="_blank" href="$1">thread</a>]')
-    return emoticons(txt);
+		i[2] == "@mods" ? (n = "chatmod", t = linkify_uid(i[1]) + i[3]) : (n = "chatpm", t = linkify_uid(i[1]) + " → " + linkify_uid(i[2]) + i[3]);
+
+	} else {
+		var s = t.match(/^[(]([0-9]+)[)] &lt;(@?)(.*)&gt; (.*)$/);
+		if (s) {
+			var o = s[1],
+			u = s[2],
+			a = s[3],
+			f = s[4];
+			t = '<span onclick="u(' + o + ');">(' + o + ')</span> <span onclick="n(' + "'" + a + "'" + ');">&lt;' + u + a + "&gt;</span> " + f,
+			o == 2 && (n = "chatprincess")
+		} else {
+			t.match(/^INFO:/) && (n = "chatinfo")
+		}
+	}
+}
+
+t=t.replace(/([^0-9a-z#])((?:betid|roll):? |#)([1-9][0-9]{4,9})\b/ig,'$1<a target="_blank" href="/roll/$3">$2$3</a>');
+t=t.replace(/(https:\/\/just-dice[.]com\/roll\/)([1-9][0-9]{0,9})/ig,' <a target="_blank" href="/roll/$2">$2</a> ');
+t=t.replace(/(bitcoin-talk|bticointakl)/ig,"$1 (a phishing site, do not visit)");
+t=t.replace(/lnputs[.]io/ig,"Lnputs.io (a phishing site, do not visit)");
+t=t.replace(/dicen[o0]w/ig,"dice-now");
+t=t.replace(/letsdice/ig,"lets-dice");
+t=t.replace(/grindabit/ig,"spamalot [lol jk]");
+t=t.replace(/bitdice[.]de/ig,"[yet more spam]");
+t=t.replace(/(http:\/\/just-dice[.]blogspot[.](?:ca|com)\/[0-9]+\/[0-9]+\/([a-z0-9-]+)(?:_[0-9]+)?[.]html)/ig,'[<a target="_blank" href="$1">$2</a>]');
+t=t.replace(/([?]|&amp;)(r|ref[a-z]*)=\s*(?:.+?\b)/ig,"$1$2= [spam link] ");
+t=t.replace(/(\/ref\/[0-9a-z\/]*)/ig," [spam link]");
+t=t.replace(/(speedy[.]sh|bit[.]ly|gg[.]gg|goo[.]gl|is[.]gd|tinyurl[.]com|ge[.]tt)\/[a-z0-9]{4,}/ig,"[suspicious link]");
+t=t.replace(/\bbitwars\b/ig,"[spam link]");
+t=t.replace(/\bmegaapp\b/ig,"[suspicious link]");
+t=t.replace(/\b(javascript:)/i,"[potential scam warning] $1");
+t=t.replace(/([a-z0-9.-_]*buybtc[a-z0-9.-_]*@gmail[.])com/ig,"I am a scammer and will steal your coins!  $1cum to meet your sticky end!");
+t=t.replace(/([a-z0-9.-_]*buybtc[a-z0-9.-_]*@gmail[.])com/ig,"");
+t=t.replace(/([^a-z])[ᴦrг]⁠*[aäΑА]⁠*[pр]⁠*[eеΕ]/ig,"$1tickle");
+t=t.replace(/([^a-z])[ᴦrг]⁠*[aäΑА]⁠*[pр]⁠*i⁠*([^d])/ig,"$1tickli$2");
+t=t.replace(/([^a-z])[ᴦrг]⁠*[aäΑА]⁠*[eеΕ]⁠*[pр]/ig,"$1tickel");
+t=t.replace(/([^a-z])[ᴦrг]⁠*[aäΑА]⁠*[eеΕ]⁠*[pр]⁠*i/ig,"$1tickeli");
+t=t.replace(/((?:(?:[nñṉɴⓝΝ]|[1iḭіlɪ!|\\/]⁠*[1iḭіlɪ!|\\/]⁠*[1iḭіlɪ!|\\/])(?:[⁠ ]*))+)((?:[1iḭіlɪ!|ⓘ][⁠ ]*)+)([gḡǥɢⓖ9][⁠ ]*)((?:[gḡǥɢⓖ9][⁠ ]*)+)((?:(?:[3eḛееΕᴇuⓔaäḁа@iḭі][⁠ ]*)+)(?:[ᴦrṙягʀⓡ][⁠ ]*)+|(?:[a@äḁаᴀ4ⓐ][⁠ ]*)+)/ig,"$3$2$1$4$5");
+t=t.replace(/(&lt;.*&gt;.*?)\b(butthurt)\b/i,'$1<a target="_blank" href="https://just-dice.com/form.jpg">$2</a>');
+t=t.replace(/(blockchain[.]info\/)(?:[a-w]{2}|zh-cn)\//g,"$1");
+t=t.replace(/([^a-zA-Z0-9=?/])(?:(?:tx(?:id)?)?:)?(?:(?:https?:\/\/)?khashier[.]com\/tx(?:-index)?\/)?([0-9a-f]{8})([0-9a-f]{56})\b/g,'$1[<a target="_blank" href="http://khashier.com/tx/$2$3">$2</a>]');
+t=t.replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?blockchain[.]info\/address\/)?(1[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g,'$1[<a target="_blank" href="http://blockchain.info/address/$2$3">$2</a>]');
+t=t.replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?dogechain[.]info\/address\/)?(D[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g,'$1[<a target="_blank" href="http://dogechain.info/address/$2$3">$2</a>]');
+t=t.replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?block-explorer[.]com\/address\/)?(L[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g,'$1[<a target="_blank" href="http://block-explorer.com/address/$2$3">$2</a>]');
+t=t.replace(/([^a-zA-Z0-9=?/])(?:(?:https?:\/\/)?khashier[.]com\/address\/)?(x[1-9A-HJ-NP-Za-km-z]{7})([1-9A-HJ-NP-Za-km-z]{24,26})\b/g,'$1[<a target="_blank" href="http://khashier.com/address/$2$3">$2</a>]');
+t=t.replace(/\b(?:(?:https?:\/\/)?(?:www[.])?polo(?:niex(?:[.]com)?(?:\/exchange\/btc_clam)?)?)\b/ig,'[<a target="_blank" href="https://poloniex.com/exchange/btc_clam">poloniex</a>]');
+t=t.replace(/\bhttps:\/\/ip[.]bitcointalk[.]org\/[?]u=http%3A%2F%2F(i[.]imgur[.]com)%2F([^&]*)&amp;t=[a-z0-9=&_;]*\b/ig,"https://$1/$2");
+t=t.replace(/\b(https?:\/\/(?:i|www)[.]imgur[.]com\/[0-9a-z]{5,7}[.](?:jpe?g|png|gif)(?:[?][0-9]+)?)\b/ig,'[<a target="_blank" href="$1">img</a>]');
+t=t.replace(/\b(https?:\/\/imgur[.]com\/(?:a|gallery)\/[0-9a-z]{5,7}\/?(?:#\d+)?)(?:\b|$)/ig,'[<a target="_blank" href="$1">imgs</a>]');
+t=t.replace(/\b(https?:\/\/(?:(?:www[.])?youtube[.]com\/watch[?]v=|youtu[.]be\/)[0-9a-z_-]{11}[?]?(?:(?:&amp;)?(?:wide|(?:feature|list)=[a-z.0-9]*|t=[0-9msh]+))*)\b/ig,'[<a target="_blank" href="$1">video</a>]');
+t=t.replace(/(&lt;.*&gt;.*?)\b(way she goes)\b/i,'$1<a target="_blank" href="https://youtu.be/gtM9xD-Ky7E">$2</a>');
+t=t.replace(/\b(https?:\/\/(?:(?:www|r2)[.])?reddit[.]com\/r\/([a-z0-9]+)\/comments\/[a-z0-9]+\/([a-z0-9_]+)(?:\/[0-9a-z]+)?\/?)(\b| |$)/ig,'[<a target="_blank" href="$1">reddit:$2 $3</a>]$4');
+t=t.replace(/\b(https:\/\/bitcointalk[.]org\/(?:index[.]php)?[?]topic=[0-9]+(?:[.](?:new#new|(?:msg)?[0-9]+))?(?:;(?:all|topicseen))?(?:#new|#msg[0-9]+)?)\b/ig,'[<a target="_blank" href="$1">thread</a>]');
+
+    return emoticons(t);
 }
 
 
@@ -74,25 +143,42 @@ function emoticons(text) { //emotes are checked and passed into a string before 
 
 }
 
-socket.on("chat", function (txt) { //reads chat lines using socket then uses simple jquery to replace the line with one containing emotes.
+socket.on("chat", function (t) { //reads chat lines using socket then uses simple jquery to replace the line with one containing emotes.
 
 	var parent = $('.chatlog').parents('.chatscroll');
 	var $parentfound = parent.find('.chatline:last');
-	var user_regex = txt.match(/\([0-9]+\)/);
-	var user_regex2 = txt.match(/\<[a-zA-Z ]+\>/);
-	var user_regex3 = txt.match(/\<[@a-zA-Z ]+\>/);
-	var matches = txt.match(user_regex);
-	var matches2 = txt.match(user_regex2);
-	var matches3 = txt.match(user_regex3);
+	var user_regex = t.match(/\([0-9]+\)/);
+	var user_regex2 = t.match(/\<[a-zA-Z ]+\>/);
+	var user_regex3 = t.match(/\<[@a-zA-Z ]+\>/);
+	var matches = t.match(user_regex);
+	var matches2 = t.match(user_regex2);
+	var matches3 = t.match(user_regex3);
 	var is_chat = 0;
 
-	if (matches && matches2 || matches && matches3) {
-		is_chat = 1;
-		//console.log('1');
-	} else {
-		//console.log('0');
-		is_chat = 0;
-	}
+				whatIsChat(t)
+
+				function whatIsChat(t) {
+					var a = t.match(/\([0-9]+\)/)
+						var aa = t.match(/\<[0-9a-zA-Z _-]+\>/);
+					var bb = t.match(/\<[@0-9a-zA-Z _-]+\>/);
+					if (a && aa || a && bb) {
+						//console.log('human')
+						var user = t.split("<")[1].split(">")[0];
+						var userid = t.substr(1).split(")")[0];
+						var moderator = "@" == user.charAt(0) ? !0 : !1;
+						if (moderator) {
+							is_chat = 1;
+						} else if (userid == 98066) {
+							is_chat = 1;
+						} else if (userid == 3143) {
+							is_chat = 0;
+						} else {
+							is_chat = 1;
+						}
+					} else {
+						is_chat = 0;
+					}
+				}
 
 	if (is_chat == 1) {
 
@@ -100,12 +186,13 @@ socket.on("chat", function (txt) { //reads chat lines using socket then uses sim
 		var name_usr = $('#nick').text();
 		var reg_usr = /\<([^)]+)\>/;
 		var reg_userid = /\(([^)]+)\)/;
-		var id_usr = reg_usr.exec(txt)[1];
-		var userid = reg_userid.exec(txt)[1];
-		var cleanMsg = txt.split("> ")[1];
+		var id_usr = reg_usr.exec(t)[1];
+		var userid = reg_userid.exec(t)[1];
+		var cleanMsg = t.split("> ")[1];
 
 		if (chat_on == 1) {
-			chat_line = doog_regex(txt);
+			chat_line = doog_regex(t);
+			console.log(chat_line);
 			$parentfound.html(gets_date() + ' ' + chat_line);
 		}
 

@@ -3,7 +3,7 @@
 
     "name": "Just-dice enhancement",
     "description": "Inkha V3",
-    "version": "3.0.2",
+    "version": "3.0.3",
 
     "permissions": [
         "tabs", "https://just-dice.com/*", "http://sci-calc.comlu.com/", "storage"
@@ -19,7 +19,7 @@
     },
     "browser_action": {
         "default_icon": "img/nix.png",
-        "default_title": "Click to go to Doge-Dice.com"
+        "default_title": "Click to go to Just-Dice.com"
     },
     "icons": {
         "16": "img/nix.png",

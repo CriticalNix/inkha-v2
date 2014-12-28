@@ -1,4 +1,4 @@
-var navLink = 'https://doge-dice.com/';
+var navLink = 'https://just-dice.com/';
 
 function navigateAway() {
 	chrome.tabs.create({url: navLink});
