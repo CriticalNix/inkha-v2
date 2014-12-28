@@ -15,6 +15,15 @@ function gets_date() {
     return strDateTime;
 }
 
+function clicked_action_bet(e) {
+	//$("#pct_balance").focus(); changes focus when bot is betting
+	if (get_waiting()) {
+		msg("Please wait for previous bet to finish.");
+		return
+	}
+	send_bet(e)
+}
+
 function linkify_uid(e) {
 	var t = e.match(/^[(]([0-9]+)[)] &lt;(@?)(.*)&gt;$/);
 	if (!t) {
