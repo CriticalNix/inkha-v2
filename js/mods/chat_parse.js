@@ -15,7 +15,7 @@ function gets_date() {
     return strDateTime;
 }
 
-function clicked_action_bet(e) {
+function clicked_action_bet(e) {  //overwrites a function from just-dice
 	//$("#pct_balance").focus(); changes focus when bot is betting
 	if (get_waiting()) {
 		msg("Please wait for previous bet to finish.");
@@ -37,30 +37,9 @@ function linkify_uid(e) {
 }
 
 function doog_regex(t) {
-
+//console.log(t);
 t=quote_html(t);
-
-
-if (!n) {
-	var i = t.match(/^[[] (.*?) → (.*?) ](.*)$/);
-	if (i) {
-
-		i[2] == "@mods" ? (n = "chatmod", t = linkify_uid(i[1]) + i[3]) : (n = "chatpm", t = linkify_uid(i[1]) + " → " + linkify_uid(i[2]) + i[3]);
-
-	} else {
-		var s = t.match(/^[(]([0-9]+)[)] &lt;(@?)(.*)&gt; (.*)$/);
-		if (s) {
-			var o = s[1],
-			u = s[2],
-			a = s[3],
-			f = s[4];
-			t = '<span onclick="u(' + o + ');">(' + o + ')</span> <span onclick="n(' + "'" + a + "'" + ');">&lt;' + u + a + "&gt;</span> " + f,
-			o == 2 && (n = "chatprincess")
-		} else {
-			t.match(/^INFO:/) && (n = "chatinfo")
-		}
-	}
-}
+t=emoticons(t);
 
 t=t.replace(/([^0-9a-z#])((?:betid|roll):? |#)([1-9][0-9]{4,9})\b/ig,'$1<a target="_blank" href="/roll/$3">$2$3</a>');
 t=t.replace(/(https:\/\/just-dice[.]com\/roll\/)([1-9][0-9]{0,9})/ig,' <a target="_blank" href="/roll/$2">$2</a> ');
@@ -100,7 +79,28 @@ t=t.replace(/(&lt;.*&gt;.*?)\b(way she goes)\b/i,'$1<a target="_blank" href="htt
 t=t.replace(/\b(https?:\/\/(?:(?:www|r2)[.])?reddit[.]com\/r\/([a-z0-9]+)\/comments\/[a-z0-9]+\/([a-z0-9_]+)(?:\/[0-9a-z]+)?\/?)(\b| |$)/ig,'[<a target="_blank" href="$1">reddit:$2 $3</a>]$4');
 t=t.replace(/\b(https:\/\/bitcointalk[.]org\/(?:index[.]php)?[?]topic=[0-9]+(?:[.](?:new#new|(?:msg)?[0-9]+))?(?:;(?:all|topicseen))?(?:#new|#msg[0-9]+)?)\b/ig,'[<a target="_blank" href="$1">thread</a>]');
 
-    return emoticons(t);
+		var i = t.match(/^[[] (.*?) → (.*?) ](.*)$/);
+		
+		if (i) {
+			//console.log('Matched i');
+		
+			i[2] == "@mods" ? (n = "chatmod", t = linkify_uid(i[1]) + i[3]) : (n = "chatpm", t = linkify_uid(i[1]) + " → " + linkify_uid(i[2]) + i[3]);
+		
+		}
+		var s = t.match(/^[(]([0-9]+)[)] &lt;(@?)(.*?)&gt; (.*)$/);
+		//var s = t.match(/^[(]([0-9]+)[)](@?) (.*) (.*)$/);
+		
+		if (s) {
+			//console.log('Matched s');
+			var o = s[1],
+			u = s[2],
+			a = s[3],
+			f = s[4];
+			t = '<span onclick="u(' + o + ');">(' + o + ')</span> <span onclick="n(' + "'" + a + "'" + ');">&lt;' + u + a + "&gt;</span> " + f,
+			o == 2 && (n = "chatprincess")
+		}
+
+    return t;
 }
 
 
@@ -156,40 +156,8 @@ socket.on("chat", function (t) { //reads chat lines using socket then uses simpl
 
 	var parent = $('.chatlog').parents('.chatscroll');
 	var $parentfound = parent.find('.chatline:last');
-	var user_regex = t.match(/\([0-9]+\)/);
-	var user_regex2 = t.match(/\<[a-zA-Z ]+\>/);
-	var user_regex3 = t.match(/\<[@a-zA-Z ]+\>/);
-	var matches = t.match(user_regex);
-	var matches2 = t.match(user_regex2);
-	var matches3 = t.match(user_regex3);
-	var is_chat = 0;
 
-				whatIsChat(t)
-
-				function whatIsChat(t) {
-					var a = t.match(/\([0-9]+\)/)
-						var aa = t.match(/\<[0-9a-zA-Z _-]+\>/);
-					var bb = t.match(/\<[@0-9a-zA-Z _-]+\>/);
-					if (a && aa || a && bb) {
-						//console.log('human')
-						var user = t.split("<")[1].split(">")[0];
-						var userid = t.substr(1).split(")")[0];
-						var moderator = "@" == user.charAt(0) ? !0 : !1;
-						if (moderator) {
-							is_chat = 1;
-						} else if (userid == 98066) {
-							is_chat = 1;
-						} else if (userid == 3143) {
-							is_chat = 0;
-						} else {
-							is_chat = 1;
-						}
-					} else {
-						is_chat = 0;
-					}
-				}
-
-	if (is_chat == 1) {
+	if (t.match(/\((.*?)\) <(.*?)> (.*)/)) {
 
 		var master = $('#uid').text();
 		var name_usr = $('#nick').text();
@@ -201,7 +169,7 @@ socket.on("chat", function (t) { //reads chat lines using socket then uses simpl
 
 		if (chat_on == 1) {
 			chat_line = doog_regex(t);
-			console.log(chat_line);
+			//console.log(chat_line);
 			$parentfound.html(gets_date() + ' ' + chat_line);
 		}
 
