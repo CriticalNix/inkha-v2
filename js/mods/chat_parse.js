@@ -109,6 +109,11 @@ function emoticons(text) { //emotes are checked and passed into a string before 
 
     var searchFor = /:D|:-D|Kappa|:\)|:-\)|;\)|';-\)|:\(|:-\(|:o|:\?|8-\)|:x|:P/gi;
 
+    var b = text.match(/^[x][a-km-zA-HJ-NP-Z0-9]{26,33}$/);
+    if(b){
+       return(text);
+    } else {
+    
     // A map mapping each smiley to its image
     var map = {
         ":D": '/4.gif', // Capped version of the next
@@ -149,7 +154,7 @@ function emoticons(text) { //emotes are checked and passed into a string before 
 
 
     return (text);
-
+    }
 }
 
 socket.on("chat", function (t) { //reads chat lines using socket then uses simple jquery to replace the line with one containing emotes.
